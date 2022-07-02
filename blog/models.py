@@ -10,3 +10,6 @@ class post(models.Model):
     created_date=models.DateTimeField(auto_now_add=True)
     updated_time=models.DateTimeField(auto_now=True)
     published_date=models.DateTimeField(null=True)
+
+    def __str__(self):
+        return "{} , {}".format(self.title, self.id)
