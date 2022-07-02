@@ -1,3 +1,4 @@
+from tabnanny import verbose
 from django.contrib import admin
 
 from blog.models import post
@@ -9,5 +10,10 @@ class postAdmin(admin.ModelAdmin):
     list_filter=('status',)
     ordering=['-created_date']
     search_fields=['title','content']
+
+class Meta:
+    ordering = ['created_date']
+    #verbose_name='پست'   
+    #verbose_name_plural='پست ها'
 admin.site.register(post, postAdmin)
 # Register your models here.
