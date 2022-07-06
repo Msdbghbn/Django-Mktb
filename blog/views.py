@@ -9,7 +9,7 @@ def blog_view(request):
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
 def blog_single(request,pid):
-    posts=get_object_or_404(post,id=pid)
+    posts=get_object_or_404(post,id=pid,status=1)
     posts.counted_view=posts.counted_view+1
     posts.save()
     context={'posts':posts}
