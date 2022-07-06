@@ -8,8 +8,12 @@ def blog_view(request):
     posts=post.objects.filter(published_date__lte=timezone.now())
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
-def blog_single(request):
-    return render(request,'blog/blog-single.html')
+def blog_single(request,pid):
+    posts=get_object_or_404(post,id=pid)
+    posts.counted_view=posts.counted_view+1
+    posts.save()
+    context={'posts':posts}
+    return render(request,'blog/blog-single.html',context)
 
 def test(request,pid):
     #posts = post.objects.get(id=pid)
