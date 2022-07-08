@@ -15,13 +15,13 @@ def blog_single(request,pid):
     context={'posts':posts}
     return render(request,'blog/blog-single.html',context)
 
-def test(request,pid):
+def test(request):
     #posts = post.objects.get(id=pid)
-    posts=get_object_or_404(post,id=pid)
-    posts.counted_view=posts.counted_view+1
-    posts.save()
+    #posts=get_object_or_404(post,id=pid)
+    #posts.counted_view=posts.counted_view+1
+    #posts.save()
     #posts = post.objects.all()
     #posts = post.objects.filter(status=0)
-    context={'posts':posts}
-    return render(request,'test.html',context)
+    #context={'posts':posts}
+    return render(request,'test.html')
 

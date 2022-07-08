@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,13 @@
     <title>Document</title>
 </head>
 <body>
-   <h1>{{posts.title}}</h1> 
+    <p>{% tp %}</p>
+    <p> {% posts %} </p>
+   <h1>test : {% posts as totalposts %}</h1> 
+
+   {% for post in totalposts %}
+        <p>{{post}}</p>
+   {% endfor %}
 
 </body>
 </html>
