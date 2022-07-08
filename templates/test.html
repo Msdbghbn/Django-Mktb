@@ -8,13 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <p>{% tp %}</p>
-    <p> {% posts %} </p>
-   <h1>test : {% posts as totalposts %}</h1> 
-
-   {% for post in totalposts %}
-        <p>{{post.content| snippet:10}}</p>
-   {% endfor %}
+<p> {% popularposts %} </p>
 
 </body>
 </html>
