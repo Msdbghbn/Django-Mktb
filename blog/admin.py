@@ -1,7 +1,7 @@
 from tabnanny import verbose
 from django.contrib import admin
 
-from blog.models import post
+from blog.models import post,Category
 
 class postAdmin(admin.ModelAdmin):
     date_hierarchy='created_date'
@@ -15,5 +15,7 @@ class Meta:
     ordering = ['created_date']
     #verbose_name='پست'   
     #verbose_name_plural='پست ها'
+
 admin.site.register(post, postAdmin)
+admin.site.register(Category)
 # Register your models here.
