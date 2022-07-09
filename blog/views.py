@@ -3,14 +3,14 @@ from django.shortcuts import render, get_object_or_404
 from blog.models import post
 from django.utils import timezone
 
-def blog_view(request,cat_name=None,aut_username=None):
+def blog_view(request,**kwargs):
     #posts = post.objects.all()
     #posts = post.objects.filter(status=1)
     posts=post.objects.filter(published_date__lte=timezone.now())
-    if cat_name:
-        posts=posts.filter(category__name=cat_name)
-    if aut_username:
-        posts=posts.filter(author__username=aut_username)
+    if kwargs.get(cat_name) !=None:
+        posts=posts.filter(category__name=kwargs[cat_name])
+    if kwargs.get(aut_username) !=None:
+        posts=posts.filter(author__username=kwargs[aut_username])
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
 def blog_single(request,pid):
