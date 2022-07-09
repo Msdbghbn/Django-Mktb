@@ -3,10 +3,12 @@ from django.shortcuts import render, get_object_or_404
 from blog.models import post
 from django.utils import timezone
 
-def blog_view(request):
+def blog_view(request,cat_name=None):
     #posts = post.objects.all()
     #posts = post.objects.filter(status=1)
     posts=post.objects.filter(published_date__lte=timezone.now())
+    if cat_name:
+        posts=posts.filter(category__name=cat_name)
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
 def blog_single(request,pid):
