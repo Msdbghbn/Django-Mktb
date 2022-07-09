@@ -1,3 +1,4 @@
+import re
 from unicodedata import category
 from django.shortcuts import render, get_object_or_404
 from blog.models import post
@@ -9,10 +10,12 @@ def blog_view(request,**kwargs):
     posts=post.objects.filter(published_date__lte=timezone.now())
     if kwargs.get('cat_name') !=None:
         posts=posts.filter(category__name=kwargs['cat_name'])
-    if kwargs.get('aut_username') !=None:
-        posts=posts.filter(author__username=kwargs['aut_username'])
+
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
+
+
+    
 def blog_single(request,pid):
     posts=get_object_or_404(post,id=pid,status=1)
     posts.counted_view=posts.counted_view+1
@@ -35,3 +38,13 @@ def blog_category(request, cat_name):
     posts=posts.filter(category__name=cat_name)
     context={'posts':posts}
     return render(request,'blog/blog-single.html',context)
+
+def blog_search(request):
+    posts=post.objects.filter(published_date__lte=timezone.now())
+
+    if request.method == 'GET':
+        if request.GET.get('s'):
+            posts=posts.filter(content__contains=request.GET.get('s'))
+
+    context={'posts':posts}
+    return render(request,'blog/blog-home.html',context)
