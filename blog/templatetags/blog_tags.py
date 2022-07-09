@@ -1,5 +1,7 @@
+from unicodedata import category
 from django import template
 from blog.models import post
+from blog.models import Category
 register = template.Library()
 
 @register.simple_tag(name='tp')
@@ -19,4 +21,14 @@ def snippet(value,arg=15):
 def popularposts(arg=3):
     posts = post.objects.filter(status=1).order_by('-published_date')[:arg]
     return {'posts':posts}
+
+@register.inclusion_tag('blog/blog-num-postcategories.html')
+def numpostcats():
+    posts = post.objects.filter(status=1)
+    cats=Category.objects.all()
+    cat_post={}
+    for name in cats:
+        cat_post[name]=posts.filter(category=name).count()
+    return {'categories':cat_post}
+    
 
