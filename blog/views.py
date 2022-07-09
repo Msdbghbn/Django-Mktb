@@ -7,10 +7,10 @@ def blog_view(request,**kwargs):
     #posts = post.objects.all()
     #posts = post.objects.filter(status=1)
     posts=post.objects.filter(published_date__lte=timezone.now())
-    if kwargs.get(cat_name) !=None:
-        posts=posts.filter(category__name=kwargs[cat_name])
-    if kwargs.get(aut_username) !=None:
-        posts=posts.filter(author__username=kwargs[aut_username])
+    if kwargs.get('cat_name') !=None:
+        posts=posts.filter(category__name=kwargs['cat_name'])
+    if kwargs.get('aut_username') !=None:
+        posts=posts.filter(author__username=kwargs['aut_username'])
     context={'posts':posts}
     return render(request,'blog/blog-home.html',context)
 def blog_single(request,pid):
