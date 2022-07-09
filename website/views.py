@@ -12,4 +12,6 @@ def contact_view(request):
     return render(request,'website2/contact.html')
 
 def test_view(request):
+    if request.method == 'POST':
+        print(request.POST.get('name'))
     return render(request,'website2/test.html')
