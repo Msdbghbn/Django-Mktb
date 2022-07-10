@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'blog',
     'django.contrib.humanize',
     
-    'django.contrib.sites'
+    'django.contrib.sites',
+    'django.contrib.sitemaps'
 ]
+
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,7 +57,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-SITE_ID = 2
 
 ROOT_URLCONF = 'mysite.urls'
 
