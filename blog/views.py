@@ -11,6 +11,8 @@ def blog_view(request,**kwargs):
     posts=post.objects.filter(published_date__lte=timezone.now())
     if kwargs.get('cat_name') !=None:
         posts=posts.filter(category__name=kwargs['cat_name'])
+    if kwargs.get('tag_name') !=None:
+        posts=posts.filter(tags__name__in=[kwargs['tag_name']])
 
     posts=Paginator(posts,3)
     try:
