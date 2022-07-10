@@ -2,7 +2,7 @@ from curses.ascii import HT
 from email import message
 from re import sub
 from django.shortcuts import render
-from website.forms import NameForm
+from website.forms import NameForm,ContactForm
 # Create your views here.
 from django.http import HttpResponse
 def index_view(request):
@@ -16,15 +16,11 @@ def contact_view(request):
 
 def test_view(request):
     if request.method == 'POST':
-        form=NameForm(request.POST)
+        form=ContactForm(request.POST)
         if form.is_valid():
-            name=form.cleaned_data['name']
-            subject=form.cleaned_data['subject']
-            email=form.cleaned_data['email']
-            message=form.cleaned_data['message']
-            print(name,subject,email,message)
+            form.save()
             return HttpResponse('done')
         else:
             return HttpResponse('error')
-    form=NameForm()
+    form=ContactForm()
     return render(request,'website2/test.html',{'form': form})
