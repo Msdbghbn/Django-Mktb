@@ -8,11 +8,8 @@
 </head>
 <body>
 <form action="{% url 'website:test' %}" method="post"> {% csrf_token %} 
- 
-  <label>name</label>
-  <input name="name" type="text">
-  <label>email</label>
-  <input email="email" type="text">
+
+  {{form.as_p}}
   <button type='submit'>submit</button>
 </form>
 
