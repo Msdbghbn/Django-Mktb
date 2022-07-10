@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
     'blog',
     'django.contrib.humanize',
-    'django-extensions'
+    
+    'django.contrib.sites'
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SITE_ID = 2
 
 ROOT_URLCONF = 'mysite.urls'
 
