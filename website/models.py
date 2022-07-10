@@ -13,3 +13,10 @@ class contact(models.Model):
         ordering = ['created_date']
     def __str__(self):
         return self.name
+
+
+
+class Newsletter(models.Model):
+    email=models.EmailField(max_length=255,null=True)
+    def __str__(self):
+        return self.email

@@ -2,9 +2,11 @@ from curses.ascii import HT
 from email import message
 from re import sub
 from django.shortcuts import render
-from website.forms import NameForm,ContactForm
+from website.forms import NameForm,ContactForm,NewsletterForm
 # Create your views here.
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+
+from website.models import Newsletter
 def index_view(request):
     return render(request,'website2/index.html')
 
@@ -32,3 +34,13 @@ def test_view(request):
             return HttpResponse('error')
     form=ContactForm()
     return render(request,'website2/test.html',{'form': form})
+
+def newsletter_view(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/')
+
