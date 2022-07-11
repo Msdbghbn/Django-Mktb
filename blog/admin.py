@@ -1,7 +1,7 @@
 from tabnanny import verbose
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from blog.models import post,Category
+from blog.models import post,Category,Comments
 
 class postAdmin(SummernoteModelAdmin):
     date_hierarchy='created_date'
@@ -17,6 +17,16 @@ class Meta:
     #verbose_name='پست'   
     #verbose_name_plural='پست ها'
 
+
+class CommentAdmin(admin.ModelAdmin):
+    date_hierarchy='created_date'
+    empty_value_display='-empty-'
+    list_display=('name','post','approved','created_date')
+    list_filter=('post','approved')
+    ordering=['-created_date']
+    search_fields=['name','post']
+
+admin.site.register(Comments,CommentAdmin)
 admin.site.register(post, postAdmin)
 admin.site.register(Category)
 # Register your models here.
