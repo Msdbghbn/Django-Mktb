@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -59,7 +60,10 @@ ROBOTS_USE_SITEMAP = False
 # Show summernote with Bootstrap4
 SUMMERNOTE_THEME = 'bs4'  
 
-
+#captcah admin setting
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
