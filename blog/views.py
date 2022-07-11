@@ -1,7 +1,7 @@
 import re
 from unicodedata import category
 from django.shortcuts import render, get_object_or_404
-from blog.models import post
+from blog.models import post, Comments
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -29,9 +29,10 @@ def blog_view(request,**kwargs):
     
 def blog_single(request,pid):
     posts=get_object_or_404(post,id=pid,status=1)
-    posts.counted_view=posts.counted_view+1
-    posts.save()
-    context={'posts':posts}
+    #posts.counted_view=posts.counted_view+1
+    comments=Comments.objects.filter(post=posts.id)
+    #posts.save()
+    context={'posts':posts,'comments':comments}
     return render(request,'blog/blog-single.html',context)
 
 def test(request):

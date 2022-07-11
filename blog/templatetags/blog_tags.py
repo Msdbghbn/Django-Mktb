@@ -2,6 +2,7 @@ from unicodedata import category
 from django import template
 from blog.models import post
 from blog.models import Category
+from blog.models import Comments
 register = template.Library()
 
 @register.simple_tag(name='tp')
@@ -30,5 +31,9 @@ def numpostcats():
     for name in cats:
         cat_post[name]=posts.filter(category=name).count()
     return {'categories':cat_post}
+
+@register.simple_tag(name='comments_count')
+def function(pid):
+    return Comments.objects.filter(post=pid,approved=True).count()
     
 
