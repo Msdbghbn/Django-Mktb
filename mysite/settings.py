@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'robots',
     'debug_toolbar',
     'taggit',
-    'django_summernote'
+    'django_summernote',
+    'captcha'
 ]
 #sites framework
 SITE_ID = 2
