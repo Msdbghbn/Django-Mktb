@@ -32,7 +32,7 @@ class post(models.Model):
 
     # def snippets(self):
      #   return self.content[:100] + '...'
-class Comments(models.Model):
+class Comment(models.Model):
     post=models.ForeignKey(post,on_delete=models.CASCADE,null=True)
     name=models.CharField(max_length=255)
     email=models.CharField(max_length=255)

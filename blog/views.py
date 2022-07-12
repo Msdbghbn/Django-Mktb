@@ -1,9 +1,10 @@
 import re
 from unicodedata import category
 from django.shortcuts import render, get_object_or_404
-from blog.models import post, Comments
+from blog.models import post, Comment
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from blog.forms import CommentForm
 
 def blog_view(request,**kwargs):
     #posts = post.objects.all()
@@ -30,9 +31,10 @@ def blog_view(request,**kwargs):
 def blog_single(request,pid):
     posts=get_object_or_404(post,id=pid,status=1)
     #posts.counted_view=posts.counted_view+1
-    comments=Comments.objects.filter(post=posts.id)
+    comment=Comment.objects.filter(post=posts.id)
     #posts.save()
-    context={'posts':posts,'comments':comments}
+    forms=CommentForm()
+    context={'posts':posts,'comment':comment,'forms':forms}
     return render(request,'blog/blog-single.html',context)
 
 def test(request):
