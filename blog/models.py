@@ -3,6 +3,7 @@ from django.db import models
 from traitlets import default
 from django.contrib.auth.models import User
 from taggit.managers import TaggableManager
+from django.urls import reverse
 # Create your models here.
 
 
@@ -29,6 +30,9 @@ class post(models.Model):
 
     def __str__(self):
         return "{} , {}".format(self.title, self.id)
+
+    def get_absolute_url(self):
+        return reverse('blog:single',kwargs={'pid':self.id})
 
     # def snippets(self):
      #   return self.content[:100] + '...'
