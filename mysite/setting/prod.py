@@ -7,11 +7,19 @@ from mysite.settings import *
 SECRET_KEY = 'django-insecure-!51w_+6&@&*lsys+9k8-5pyu53ufd!u*wpenuhdmyc%#ome=-1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['m4s00d.com','www.m4s00d.com']
 #sites framework
 SITE_ID = 2
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 
 STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_ROOT = BASE_DIR / 'media'
